@@ -23,12 +23,17 @@ public class QuotationService {
     @Inject
     QuotationClient client;
 
+    @Inject
+    BusinessDayService bdService;
+
     @CacheResult(cacheName = "quotation")
     public Quotation getQuotation(ParameterIn data) throws QuotationNotFoundException {
-//        log.info("Fez a chamada na API do BCB com a data: " + data);
+        String date = data.getData().orElse("'" + LocalDate.now().format(DateTimeFormatter.ofPattern("MM-dd-yyyy")) + "'");
 
-
-
-        return client.getQuotation(data.getData().orElse("'" + LocalDate.now().format(DateTimeFormatter.ofPattern("MM-dd-yyyy")) + "'"));
+        bdService.setDate(date);
+        if (bdService.isBusinessDay()) {
+            return client.getQuotation(date);
+        } else
+            throw new QuotationNotFoundException("A data informada não corresponde a um dia útil! " + bdService.getDay());
     }
 }
