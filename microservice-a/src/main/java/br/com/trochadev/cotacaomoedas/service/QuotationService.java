@@ -25,10 +25,6 @@ public class QuotationService {
 
     @CacheResult(cacheName = "quotation")
     public Quotation getQuotation(ParameterIn data) throws QuotationNotFoundException {
-//        log.info("Fez a chamada na API do BCB com a data: " + data);
-
-
-
         return client.getQuotation(data.getData().orElse("'" + LocalDate.now().format(DateTimeFormatter.ofPattern("MM-dd-yyyy")) + "'"));
     }
 }
