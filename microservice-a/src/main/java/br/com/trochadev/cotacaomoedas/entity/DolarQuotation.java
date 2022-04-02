@@ -3,7 +3,7 @@ package br.com.trochadev.cotacaomoedas.entity;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @Schema(name="Cotação do Dólar", description="Classe que representa a Cotação do Dólar")
-public class CotacaoDolar {
+public class DolarQuotation {
     double cotacaoCompra;
     double cotacaoVenda;
     String dataHoraCotacao;
