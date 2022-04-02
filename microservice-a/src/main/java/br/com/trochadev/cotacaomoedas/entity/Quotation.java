@@ -6,11 +6,11 @@ import javax.json.bind.annotation.JsonbProperty;
 import java.util.List;
 
 @Schema(name="Cotação", description="Classe que representa a Cotação")
-public class Cotacao {
+public class Quotation {
 
     @JsonbProperty(value = "@odata.context")
     String context;
-    List<CotacaoDolar> value;
+    List<DolarQuotation> value;
 
     public String getContext() {
         return context;
@@ -20,11 +20,11 @@ public class Cotacao {
         this.context = context;
     }
 
-    public List<CotacaoDolar> getValue() {
+    public List<DolarQuotation> getValue() {
         return value;
     }
 
-    public void setValue(List<CotacaoDolar> value) {
+    public void setValue(List<DolarQuotation> value) {
         this.value = value;
     }
 }
