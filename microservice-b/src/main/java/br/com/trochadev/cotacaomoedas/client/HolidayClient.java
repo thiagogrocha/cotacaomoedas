@@ -14,6 +14,6 @@ public interface HolidayClient {
     @GET
     @Path("/{year}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Holiday> getHolidays(@PathParam ("year")String year, @QueryParam("token") String token);
+    List<Holiday> getHolidays(@PathParam ("year")String year, @QueryParam("token") String token);
 
 }
