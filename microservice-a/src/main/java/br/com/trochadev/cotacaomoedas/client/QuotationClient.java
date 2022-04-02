@@ -13,6 +13,6 @@ public interface QuotationClient {
     @GET
     @Path("CotacaoDolarDia(dataCotacao=@dataCotacao)")
     @Produces(MediaType.APPLICATION_JSON)
-    public Quotation getQuotation(@QueryParam("@dataCotacao") String data);
+    Quotation getQuotation(@QueryParam("@dataCotacao") String data);
 
 }
