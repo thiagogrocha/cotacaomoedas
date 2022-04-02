@@ -33,7 +33,7 @@ public class QuotationController {
                     content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = Quotation.class))),
             @APIResponse(responseCode = "403", description = "Cotação não localizada",
                     content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = ExceptionHandler.ErrorResponseBody.class)))})
-    public Quotation getCotacao(@BeanParam ParameterIn data) throws QuotationNotFoundException {
+    public Quotation getQuotation(@BeanParam ParameterIn data) throws QuotationNotFoundException {
         return service.getQuotation(data);
     }
 
