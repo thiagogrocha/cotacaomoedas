@@ -1,9 +1,7 @@
 package br.com.trochadev.cotacaomoedas.service;
 
 import br.com.trochadev.cotacaomoedas.client.HolidayClient;
-import br.com.trochadev.cotacaomoedas.controller.ParameterIn;
 import br.com.trochadev.cotacaomoedas.entity.Holiday;
-import br.com.trochadev.cotacaomoedas.exception.QuotationNotFoundException;
 import io.quarkus.cache.CacheResult;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.slf4j.Logger;
@@ -26,11 +24,11 @@ public class HolidayService {
     HolidayClient client;
 
     @CacheResult(cacheName = "holiday")
-    public Optional<Holiday> getHoliday(ParameterIn data) throws QuotationNotFoundException {
+    public Optional<Holiday> getHoliday(String data) {
 //        log.info("Fez a chamada na API do BCB com a data: " + data);
 
 
 
-        return client.getQuotation(data.getData().orElse("'" + LocalDate.now().format(DateTimeFormatter.ofPattern("MM-dd-yyyy")) + "'"));
+        return Optional.ofNullable(new Holiday());
     }
 }
