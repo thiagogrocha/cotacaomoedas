@@ -11,6 +11,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
@@ -25,10 +26,15 @@ public class HolidayService {
 
     @CacheResult(cacheName = "holiday")
     public Optional<Holiday> getHoliday(String data) {
-//        log.info("Fez a chamada na API do BCB com a data: " + data);
 
-
-
-        return Optional.ofNullable(new Holiday());
+        List<Holiday> holidays = client.getHolidays(data.replace("'", "").split("-")[2], token);
+        for (Holiday holiday : holidays) {
+            if (data.replace("'", "").equals(LocalDate.parse(holiday.getDate(),
+                            DateTimeFormatter.ofPattern("yyyy-MM-dd")).
+                    format(DateTimeFormatter.ofPattern("MM-dd-yyyy")))) {
+                return Optional.ofNullable(holiday);
+            }
+        }
+        return Optional.ofNullable(null);
     }
 }
