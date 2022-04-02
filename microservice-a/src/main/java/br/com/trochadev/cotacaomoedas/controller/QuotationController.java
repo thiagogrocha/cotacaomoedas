@@ -4,17 +4,20 @@ import br.com.trochadev.cotacaomoedas.entity.Quotation;
 import br.com.trochadev.cotacaomoedas.service.QuotationService;
 import br.com.trochadev.cotacaomoedas.exception.QuotationNotFoundException;
 import br.com.trochadev.cotacaomoedas.exceptionhandler.ExceptionHandler;
+import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path("CotacaoDolar")
+@Tag(name = "Cotação", description = "Dólar compra/venda")
 public class QuotationController {
 
     @Inject
