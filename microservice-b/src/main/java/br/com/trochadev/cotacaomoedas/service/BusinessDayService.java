@@ -37,7 +37,6 @@ public class BusinessDayService {
         return isBusinessDay;
     }
 
-
     private void isBusinessDay(String data) {
 
         Optional<Holiday> holidayOpt = service.getHoliday(data);
