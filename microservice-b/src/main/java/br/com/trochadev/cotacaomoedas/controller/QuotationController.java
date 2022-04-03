@@ -2,6 +2,7 @@ package br.com.trochadev.cotacaomoedas.controller;
 
 import br.com.trochadev.cotacaomoedas.entity.Quotation;
 import br.com.trochadev.cotacaomoedas.exception.QuotationNotFoundException;
+import br.com.trochadev.cotacaomoedas.exception.UrlUnableToInvokeException;
 import br.com.trochadev.cotacaomoedas.exceptionhandler.ExceptionHandler;
 import br.com.trochadev.cotacaomoedas.service.QuotationService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -33,7 +34,7 @@ public class QuotationController {
                     content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = Quotation.class))),
             @APIResponse(responseCode = "403", description = "Cotação não localizada",
                     content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = ExceptionHandler.ErrorResponseBody.class)))})
-    public Quotation getQuotation(@BeanParam ParameterIn data) throws QuotationNotFoundException {
+    public Quotation getQuotation(@BeanParam ParameterIn data) throws QuotationNotFoundException, UrlUnableToInvokeException {
         return service.getQuotation(data);
     }
 
