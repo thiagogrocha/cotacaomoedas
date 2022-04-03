@@ -1,6 +1,7 @@
 package br.com.trochadev.cotacaomoedas.exceptionhandler;
 
 import br.com.trochadev.cotacaomoedas.exception.QuotationNotFoundException;
+import br.com.trochadev.cotacaomoedas.exception.UrlUnableToInvokeException;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
@@ -13,6 +14,10 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
     public Response toResponse(Exception exception) {
         if(exception instanceof QuotationNotFoundException) {
             return Response.status(Response.Status.NOT_FOUND)
+                    .entity(new ErrorResponseBody(exception.getMessage()))
+                    .build();
+        }else if(exception instanceof UrlUnableToInvokeException) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity(new ErrorResponseBody(exception.getMessage()))
                     .build();
         }
