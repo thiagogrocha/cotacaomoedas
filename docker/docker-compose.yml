@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+
+  microservice-a:
+    image: quarkus/microservice-a-jvm
+    ports:
+      - "8081:8081"
+    networks:
+      - microservice
+
+  microservice-b:
+    image: quarkus/microservice-b-jvm
+    ports:
+      - "8082:8082"
+    networks:
+      - microservice
+
+networks: 
+  microservice:
+    driver: bridge
